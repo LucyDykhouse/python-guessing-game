@@ -2,7 +2,6 @@
 
 from random import randint
 
-randNum = randint(1, 100)
 count = 0
 maxTries = 15
 bestScore = maxTries
@@ -12,8 +11,29 @@ print('\nHowdy, what\'s your name?')
 
 name = input('(Type in your name): ')
 
-print(f'{name}, I\'m thinking of a number between 1 and 100.')
-print('Try to guess my number.\n')
+while True:
+    lower = input(f'Hi {name}! Type a lower bound for guessing: ')
+
+    try:
+        lower = int(lower)
+        break
+    except ValueError:
+        print(f'{lower} is not a number!')
+        continue
+
+while True:
+    upper = input(f'Hi {name}! Type an upper bound for guessing: ')
+
+    try:
+        upper = int(upper)
+        randNum = randint(lower, upper)        
+        break
+    except ValueError:
+        print(f'{upper} is not a number or is less than the lower limit, {lower}!')
+        continue
+
+print(f'Great! Try to guess my number between {lower} and {upper}.\n')
+
 
 
 while True:
@@ -45,7 +65,7 @@ while True:
             print('Here we go again!\n')
             count = 0
             worstScore = maxTries
-            randNum = randint(1, 100)
+            randNum = randint(lower, upper)
             continue
 
         else:
@@ -78,7 +98,7 @@ while True:
         if replay.lower() == 'yes':
             print('Here we go again!\n')
             count = 0
-            randNum = randint(1, 100)
+            randNum = randint(lower, upper)
             continue
 
         else:
