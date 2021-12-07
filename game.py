@@ -2,8 +2,8 @@
 
 from random import randint
 
-count = 0
 randNum = randint(1, 100)
+count = 0
 
 print('\nHowdy, what\'s your name?')
 
@@ -15,12 +15,18 @@ print('Try to guess my number.\n')
 
 while True:
     guess = input('Your guess? ')
-    
+
     try:
         guess = int(guess)
     except ValueError:
         print(f'{guess} is not a number')
         continue
+
+    if guess < 1 or guess > 100:
+        print('Your guess must be between 0 and 100')
+        continue
+
+    count += 1
 
     if guess < randNum:
         print('Your guess is too low, try again.')
