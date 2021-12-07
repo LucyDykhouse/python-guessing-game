@@ -10,19 +10,17 @@ print('\nHowdy, what\'s your name?')
 name = input('(Type in your name): ')
 
 print(f'{name}, I\'m thinking of a number between 1 and 100.')
-print('Try to guess my number.')
+print('Try to guess my number.\n')
 
 
 while True:
     guess = input('Your guess? ')
-
+    
     try:
         guess = int(guess)
     except ValueError:
         print(f'{guess} is not a number')
-
-    if (guess < 1 or guess > 100):
-        print(f'{guess} is not between 1 and 100')
+        continue
 
     if guess < randNum:
         print('Your guess is too low, try again.')
